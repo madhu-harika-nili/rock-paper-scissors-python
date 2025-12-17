@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rock • Paper • Scissors — Premium</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <!-- Animated gradient background + shapes container -->
+  <div id="bg-gradient"></div>
+  <div id="shapes"></div>
+
+  <!-- Loading overlay -->
+  <div id="loading" class="loading hidden" aria-hidden="true">
+    <div class="spinner"></div>
+  </div>
+
+  <main class="card" role="main">
+    <header class="top">
+      <h1 class="title">Rock • Paper • Scissors</h1>
+
+      <div class="controls">
+        <label class="mode">
+          <select id="modeSelect" title="Game Mode">
+            <option value="single">Single Player (vs Computer)</option>
+            <option value="local">Local Multiplayer (Pass & Play)</option>
+          </select>
+        </label>
+
+        <button id="themeToggle" class="icon" title="Toggle theme">🌙</button>
+        <button id="soundToggle" class="icon" title="Toggle sound">🔊</button>
+        <button id="resetBtn" class="icon" title="Reset scores">↺</button>
+      </div>
+    </header>
+
+    <section class="scoreboard" aria-live="polite">
+      <div>
+        <div class="label" id="playerLabel">You</div>
+        <div class="big-score" id="playerScore">0</div>
+      </div>
+      <div>
+        <div class="label" id="opponentLabel">Computer</div>
+        <div class="big-score" id="opponentScore">0</div>
+      </div>
+    </section>
+
+    <section class="choices" role="group" aria-label="choices">
+      <button class="choice" data-choice="rock">🪨 Rock</button>
+      <button class="choice" data-choice="paper">📄 Paper</button>
+      <button class="choice" data-choice="scissor">✂️ Scissor</button>
+    </section>
+
+    <section class="result" aria-live="polite">
+      <div id="roundInfo">Make your move</div>
+      <h2 id="resultText">—</h2>
+      <div id="choicesText">You: -  •  Opponent: -</div>
+    </section>
+
+    <section class="extras">
+      <button id="confettiBtn" class="small">Celebrate</button>
+    </section>
+  </main>
+
+  <canvas id="confettiCanvas" class="confetti"></canvas>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
+
+
+
+
+

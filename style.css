@@ -1,0 +1,85 @@
+:root{
+  --bg1:#6b21a8; --bg2:#0ea5e9;
+  --card: rgba(255,255,255,0.04);
+  --glass: rgba(255,255,255,0.06);
+  --text: #fff; --muted: rgba(255,255,255,0.85);
+}
+body.light {
+  --bg1:#f59e0b; --bg2:#06b6d4;
+  --card: rgba(0,0,0,0.03);
+  --glass: rgba(0,0,0,0.06);
+  --text:#111; --muted: rgba(0,0,0,0.75);
+}
+
+* { box-sizing:border-box; }
+html,body { height:100%; margin:0; font-family: Inter, "Poppins", system-ui, sans-serif; color:var(--text); }
+
+#bg-gradient{
+  position:fixed; inset:0; z-index:-4;
+  background: linear-gradient(120deg,var(--bg1),var(--bg2));
+  background-size:400% 400%; animation:bgShift 12s ease-in-out infinite;
+}
+@keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+#shapes{ position:fixed; inset:0; z-index:-3; pointer-events:none; overflow:hidden; }
+.shape{ position:absolute; border-radius:50%; opacity:.12; filter:blur(28px); transform:translate3d(0,0,0); }
+.shape.s1{ width:420px;height:420px; left:-80px; top:10%; background:rgba(255,255,255,0.12); animation:float1 18s linear infinite; }
+.shape.s2{ width:260px;height:260px; right:-40px; top:20%; background:rgba(0,0,0,0.12); animation:float2 14s linear infinite; }
+.shape.s3{ width:200px;height:200px; left:10%; bottom:8%; background:rgba(255,255,255,0.08); animation:float3 20s linear infinite; }
+.shape.s4{ width:120px;height:120px; right:8%; bottom:24%; background:rgba(0,0,0,0.06); animation:float4 16s linear infinite; }
+@keyframes float1{0%{transform:translateY(0)}50%{transform:translateY(-140px)}100%{transform:translateY(0)}}
+@keyframes float2{0%{transform:translateY(0) rotate(0)}50%{transform:translateY(-90px) rotate(20deg)}100%{transform:translateY(0) rotate(0)}}
+@keyframes float3{0%{transform:translateY(0)}50%{transform:translateY(-180px)}100%{transform:translateY(0)}}
+@keyframes float4{0%{transform:translateY(0)}50%{transform:translateY(-60px)}100%{transform:translateY(0)}}
+
+/* Loading overlay */
+.loading{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.28); z-index:90;}
+.loading.hidden{ display:none; }
+.spinner{ width:64px;height:64px;border-radius:50%; border:8px solid rgba(255,255,255,0.12); border-top-color:rgba(255,255,255,0.9); animation:spin 1s linear infinite; }
+@keyframes spin{ to{ transform:rotate(360deg); } }
+
+/* Card */
+.card{ width:100%; max-width:980px; margin:48px auto; padding:28px; border-radius:18px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06)); box-shadow:0 10px 60px rgba(0,0,0,0.25); color:var(--text); backdrop-filter: blur(8px); position:relative; }
+
+/* top */
+.top{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; }
+.title{ font-size:36px; margin:0; text-shadow:0 8px 30px rgba(0,0,0,0.2); }
+.controls{ display:flex; gap:8px; align-items:center; }
+.controls select{ padding:8px 10px; border-radius:8px; border:none; background:var(--glass); color:var(--text); }
+
+/* scoreboard */
+.scoreboard{ display:flex; gap:24px; justify-content:center; margin:22px 0; }
+.label{ color:var(--muted); font-size:14px; text-align:center; }
+.big-score{ font-size:44px; font-weight:700; text-align:center; }
+
+/* choices */
+.choices{ display:flex; justify-content:center; gap:14px; margin:18px 0; flex-wrap:wrap; }
+.choice{ min-width:130px; padding:14px 20px; border-radius:14px; border:none; cursor:pointer; font-size:18px; background:var(--glass); color:var(--text); box-shadow: 0 8px 40px rgba(0,0,0,0.18); transition: transform .18s, box-shadow .18s; position:relative; overflow:hidden; }
+.choice::after{ content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(255,255,255,0.03), transparent); opacity:0; transition:opacity .18s; }
+.choice:active{ transform:translateY(3px) scale(.99); box-shadow:0 6px 30px rgba(0,0,0,0.12); }
+.choice:hover::after{ opacity:1; }
+
+/* result */
+.result{ text-align:center; margin-top:14px; }
+#resultText{ font-size:22px; margin:8px 0; }
+#choicesText{ color:var(--muted); }
+
+/* extras */
+.extras{ display:flex; justify-content:center; gap:8px; margin-top:12px; }
+.small{ padding:8px 12px; border-radius:10px; border:none; background:var(--glass); cursor:pointer; }
+
+/* confetti canvas fallback */
+.confetti{ position:fixed; inset:0; pointer-events:none; z-index:60; }
+
+/* responsive */
+@media (max-width:640px){
+  .title{ font-size:24px; }
+  .choice{ min-width:92px; padding:10px 12px; font-size:16px; }
+  .big-score{ font-size:34px; }
+  .card{ margin:20px; padding:18px; }
+}
+
+
+
+
+
